@@ -23,6 +23,13 @@ window/stretch/scale=3.0
 
 project/assembly_name="Pixel Frog Platformer"
 
+[layer_names]
+
+2d_physics/layer_1="Walls"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemy"
+2d_physics/layer_4="Player Thrown Weapon"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
