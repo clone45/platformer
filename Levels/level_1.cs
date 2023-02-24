@@ -19,7 +19,7 @@ public partial class level_1 : Node2D
 	
 	public override void _UnhandledInput(InputEvent @event)
 	{
-		if (Input.IsActionJustPressed("ui_accept"))
+		if (Input.IsActionJustPressed("throw"))
 		{
 			
 			throwing_axe axe_instance = (throwing_axe) axe.Instantiate();
@@ -32,7 +32,7 @@ public partial class level_1 : Node2D
 			ninjafrog = GetNode<player>("Player");
 			axe_instance.Position = ninjafrog.Position;
 			
-			axe_instance.HorizontalVelocity = 150.0f * ninjafrog.Direction;
+			axe_instance.HorizontalVelocity = 300.0f * ninjafrog.Direction;
 			
 			this.AddChild(axe_instance);
 		}

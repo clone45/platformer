@@ -3,11 +3,14 @@ using System;
 
 public partial class throwing_axe : CharacterBody2D
 {
-	public float HorizontalVelocity = 150.0f;
-	public float VerticalVelocity = -400.0f;
-
+	public float HorizontalVelocity = 200.0f;
+	public float VerticalVelocity = -250.0f;
+	public float RotationSpeed = 20.0f;
+	public float RotationDirection = 1.0f;
+	
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+	public AnimatedSprite2D SpriteAnimation;
 
 	public override void _Ready()
 	{
@@ -25,8 +28,9 @@ public partial class throwing_axe : CharacterBody2D
 		// visibility_notifier.Connect("screen_exited", this, "OnVisibilityNotifier2DScreenExited");
 
 		VisibleOnScreenNotifier2D visibility_notifier = this.GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D");
-		visibility_notifier.ScreenExited += OnVisibilityNotifier2DScreenExited;		
-		// visibility_notifier.ScreenExited += () => GD.Print("screen exited!");	
+		visibility_notifier.ScreenExited += OnVisibilityNotifier2DScreenExited;
+		
+		SpriteAnimation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -40,6 +44,12 @@ public partial class throwing_axe : CharacterBody2D
 			velocity.Y += gravity * (float)delta;
 
 		Velocity = velocity;
+		
+		RotationDirection = (velocity.X < 0) ? -1.0f : 1.0f;
+		Rotation += RotationDirection * RotationSpeed * (float)delta;
+
+		SpriteAnimation.FlipH = (velocity.X < 0);
+
 		var collision = MoveAndCollide(Velocity * (float)delta);
 		
 		if (collision != null)
