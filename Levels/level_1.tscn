@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bo8hq6gfapfe0"]
+[gd_scene load_steps=10 format=3 uid="uid://b042v2vanfpjs"]
 
 [ext_resource type="Texture2D" uid="uid://chc4wyokxbu28" path="res://Art/Background/Brown.png" id="1_f87ed"]
 [ext_resource type="Script" path="res://Levels/level_1.cs" id="1_qyuim"]
 [ext_resource type="Texture2D" uid="uid://7iphsn416xov" path="res://Art/Terrain/Terrain (16x16).png" id="1_vxydj"]
-[ext_resource type="PackedScene" uid="uid://24ue8ip6j3mt" path="res://Characters/player.tscn" id="2_xy2r5"]
+[ext_resource type="PackedScene" uid="uid://d1p7omsy7svdo" path="res://Characters/Player.tscn" id="2_xy2r5"]
 [ext_resource type="Texture2D" uid="uid://cnher637mvpe8" path="res://Art/Items/Fruits/Cherries.png" id="3_k6eh6"]
 [ext_resource type="Script" path="res://Levels/PLayerCamera.cs" id="3_vi16g"]
 

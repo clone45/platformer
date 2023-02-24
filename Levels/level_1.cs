@@ -4,7 +4,7 @@ using System;
 public partial class level_1 : Node2D
 {
 	PackedScene axe;
-	public CharacterBody2D player;
+	public player ninjafrog;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -22,20 +22,17 @@ public partial class level_1 : Node2D
 		if (Input.IsActionJustPressed("ui_accept"))
 		{
 			
-			CharacterBody2D axe_instance = (CharacterBody2D) axe.Instantiate();
+			throwing_axe axe_instance = (throwing_axe) axe.Instantiate();
 			
-			/*
 			if(! CharacterBody2D.IsInstanceValid(axe_instance))
 			{
 				GD.Print("Invalid axe instance.");
 			}
-			*/
 			
-			player = GetNode<CharacterBody2D>("Player");
-			axe_instance.Position = player.Position;
+			ninjafrog = GetNode<player>("Player");
+			axe_instance.Position = ninjafrog.Position;
 			
-			// axe_instance.HorizontalVelocity = 150.0f * player_instance.Direction;
-			// axe_instance.VerticalVelocity = -400.0f;
+			axe_instance.HorizontalVelocity = 150.0f * ninjafrog.Direction;
 			
 			this.AddChild(axe_instance);
 		}
