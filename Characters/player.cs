@@ -21,14 +21,14 @@ public partial class player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = Velocity;
+		Vector2 new_velocity = Velocity;
 
 		// Add the gravity.
 		if (!IsOnFloor())
 		{
-			velocity.Y += gravity * (float)delta;
+			new_velocity.Y += gravity * (float)delta;
 			
-			if(velocity.Y <= 0)
+			if(new_velocity.Y <= 0)
 			{
 				SpriteAnimation.Play("jump");
 			}
@@ -40,23 +40,24 @@ public partial class player : CharacterBody2D
 		}
 
 		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_up") && IsOnFloor())
+		if (Input.IsActionJustPressed("jump") && IsOnFloor())
 		{
-			velocity.Y = JumpVelocity;
+			new_velocity.Y = JumpVelocity;
 		}
 
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+		// Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+		Vector2 direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
 		if (direction != Vector2.Zero)
 		{
-			velocity.X = direction.X * Speed;
+			new_velocity.X = direction.X * Speed;
 			
-			SpriteAnimation.FlipH = (velocity.X < 0);
+			SpriteAnimation.FlipH = (new_velocity.X < 0);
 		}
 		else
 		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+			new_velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 		}
 
 		if (IsOnFloor())
@@ -73,7 +74,7 @@ public partial class player : CharacterBody2D
 
 		Direction = (SpriteAnimation.FlipH) ? -1.0f : 1.0f;
 
-		Velocity = velocity;
+		Velocity = new_velocity;
 		MoveAndSlide();
 	}
 }
