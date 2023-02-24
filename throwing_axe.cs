@@ -3,8 +3,8 @@ using System;
 
 public partial class throwing_axe : CharacterBody2D
 {
-	public const float Speed = 150.0f;
-	public const float VerticalVelocity = -400.0f;
+	public float HorizontalVelocity = 150.0f;
+	public float VerticalVelocity = -400.0f;
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -13,12 +13,20 @@ public partial class throwing_axe : CharacterBody2D
 	{
 		base._Ready();
 		
+		// Set initial velocity
 		Vector2 velocity = Velocity;
-		
-		velocity.X = Speed;
+		velocity.X = HorizontalVelocity;
 		velocity.Y = VerticalVelocity;
-		
 		Velocity = velocity;
+		
+		// Connect to screen_exited event
+		// see: https://docs.godotengine.org/en/latest/tutorials/scripting/c_sharp/c_sharp_signals.html#custom-signals-as-c-events
+		// VisibleOnScreenNotifier2D visibility_notifier = this.GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D");
+		// visibility_notifier.Connect("screen_exited", this, "OnVisibilityNotifier2DScreenExited");
+
+		VisibleOnScreenNotifier2D visibility_notifier = this.GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D");
+		visibility_notifier.ScreenExited += OnVisibilityNotifier2DScreenExited;		
+		// visibility_notifier.ScreenExited += () => GD.Print("screen exited!");	
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -31,28 +39,7 @@ public partial class throwing_axe : CharacterBody2D
 		if (!IsOnFloor())
 			velocity.Y += gravity * (float)delta;
 
-		// Handle Jump.
-		// if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-		// 	velocity.Y = VerticalVelocity;
-
-		//
-		// I'll have to figure out the direction.  Maybe I set a variable in the class for that?
-		//
-		
-		/*
-		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		if (direction != Vector2.Zero)
-		{
-			velocity.X = direction.X * Speed;
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-		}
-		*/
-
 		Velocity = velocity;
-		// MoveAndSlide();
 		var collision = MoveAndCollide(Velocity * (float)delta);
 		
 		if (collision != null)
@@ -62,4 +49,11 @@ public partial class throwing_axe : CharacterBody2D
 			this.QueueFree();
 		}		
 	}
+	
+	public void OnVisibilityNotifier2DScreenExited()
+	{
+		// Deletes the bullet when it exits the screen.
+		GD.Print("deleted axe");
+		this.QueueFree();
+	}	
 }

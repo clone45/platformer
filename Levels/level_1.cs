@@ -24,13 +24,18 @@ public partial class level_1 : Node2D
 			
 			CharacterBody2D axe_instance = (CharacterBody2D) axe.Instantiate();
 			
+			/*
 			if(! CharacterBody2D.IsInstanceValid(axe_instance))
 			{
 				GD.Print("Invalid axe instance.");
 			}
+			*/
 			
 			player = GetNode<CharacterBody2D>("Player");
 			axe_instance.Position = player.Position;
+			
+			// axe_instance.HorizontalVelocity = 150.0f * player_instance.Direction;
+			// axe_instance.VerticalVelocity = -400.0f;
 			
 			this.AddChild(axe_instance);
 		}

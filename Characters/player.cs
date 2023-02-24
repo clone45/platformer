@@ -6,6 +6,8 @@ public partial class player : CharacterBody2D
 	public const float Speed = 150.0f;
 	public const float JumpVelocity = -350.0f;
 
+	float Direction = 1.0f;
+
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	public AnimatedSprite2D SpriteAnimation;
