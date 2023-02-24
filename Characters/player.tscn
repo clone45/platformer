@@ -218,3 +218,6 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_02rat")
+
+[node name="JumpButtonTimer" type="Timer" parent="."]
+one_shot = true

@@ -11,12 +11,14 @@ public partial class player : CharacterBody2D
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	public AnimatedSprite2D SpriteAnimation;
+	public Timer jump_button_timer;
 	
 	public override void _Ready()
 	{
 		base._Ready();
 		SpriteAnimation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		SpriteAnimation.Play("idle");
+		jump_button_timer = GetNode<Timer>("JumpButtonTimer");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -39,8 +41,28 @@ public partial class player : CharacterBody2D
 			
 		}
 
-		// Handle Jump.
-		if (Input.IsActionJustPressed("jump") && IsOnFloor())
+		// Handle Jump
+		if (Input.IsActionJustPressed("jump"))
+		{
+			if(IsOnFloor())
+			{
+				new_velocity.Y = JumpVelocity;
+			}
+			else
+			{
+				// Set timer
+				jump_button_timer.Start(0.10f);
+				
+				// If close enough to floor, then jump
+				/*
+				var spaceState = GetWorld2D().DirectSpaceState;
+				var query = PhysicsRayQueryParameters2D.Create(globalPosition, enemyPosition, CollisionMask, new Godot.Collections.Array<Rid> { GetRid() });
+				var result = spaceState.IntersectRay(query);
+				*/
+			}		
+		}
+		
+		if(IsOnFloor() && ! jump_button_timer.IsStopped())
 		{
 			new_velocity.Y = JumpVelocity;
 		}
