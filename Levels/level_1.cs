@@ -1,3 +1,7 @@
+//
+// TODO: add comentators
+//
+
 using Godot;
 using System;
 

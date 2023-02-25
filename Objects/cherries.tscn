@@ -1,0 +1,145 @@
+[gd_scene load_steps=22 format=3 uid="uid://be5lhpnlfswib"]
+
+[ext_resource type="Script" path="res://Objects/cherries.cs" id="1_l6hs8"]
+[ext_resource type="Texture2D" uid="uid://cnher637mvpe8" path="res://Art/Items/Fruits/Cherries.png" id="1_s7bc8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a3bpr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ep27"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjlf0"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce5lq"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igvs6"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_654eh"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rowwm"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy2be"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5bjl"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpwvm"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k5ol"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc6uv"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2kah"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irgr0"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hln7x"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k37rn"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4lhu"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(480, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b76yl"]
+atlas = ExtResource("1_s7bc8")
+region = Rect2(512, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_attxe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ep27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjlf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ce5lq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igvs6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_654eh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rowwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fy2be")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5bjl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpwvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k5ol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc6uv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2kah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irgr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hln7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k37rn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4lhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b76yl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Cherries" type="Area2D"]
+script = ExtResource("1_l6hs8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_a3bpr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_attxe")
+autoplay = "default"
+frame = 6
+frame_progress = 0.922634
