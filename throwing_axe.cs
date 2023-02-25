@@ -39,10 +39,11 @@ public partial class throwing_axe : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		Vector2 velocity = Velocity;
+		SpriteAnimation.FlipH = (velocity.X < 0);
+		
 		if(! this.stuck)
 		{
-			Vector2 velocity = Velocity;
-
 			// Add the gravity.
 			// Eventually change this
 			if (!IsOnFloor())
@@ -63,6 +64,18 @@ public partial class throwing_axe : CharacterBody2D
 				
 				// this.QueueFree();
 				this.stuck = true;
+				
+				// Face the axe toward the target
+				Vector2 normal = collision.GetNormal();
+				if(normal.X != 0)
+				{
+					this.Rotation = normal.Y / normal.X;
+				}
+				else
+				{
+					this.Rotation = RotationDirection;
+				}
+				
 				axe_fade_out_timer.Start(0.5f);
 				axe_fade_out_timer.Timeout += AxeFadeOutTimerTimeout;
 			}			
