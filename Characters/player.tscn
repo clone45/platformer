@@ -1,11 +1,40 @@
-[gd_scene load_steps=40 format=3 uid="uid://d1p7omsy7svdo"]
+[gd_scene load_steps=48 format=3 uid="uid://d1p7omsy7svdo"]
 
 [ext_resource type="Script" path="res://Characters/player.cs" id="1_kuqx4"]
+[ext_resource type="Texture2D" uid="uid://c4cb87i3l7dji" path="res://Art/Main Characters/Appearing (96x96).png" id="2_64ppj"]
 [ext_resource type="Texture2D" uid="uid://dchstqgvvnxp1" path="res://Art/Main Characters/Desappearing (96x96).png" id="2_jmyar"]
 [ext_resource type="Texture2D" uid="uid://babmroe2fmh0f" path="res://Art/Main Characters/Ninja Frog/Fall (32x32).png" id="2_kfyxq"]
 [ext_resource type="Texture2D" uid="uid://c08rmpa5di001" path="res://Art/Main Characters/Ninja Frog/Idle (32x32).png" id="3_n3fa5"]
 [ext_resource type="Texture2D" uid="uid://bf3a0ba5qg14c" path="res://Art/Main Characters/Ninja Frog/Jump (32x32).png" id="4_g3fv6"]
 [ext_resource type="Texture2D" uid="uid://bnhbjtkqcjc26" path="res://Art/Main Characters/Ninja Frog/Run (32x32).png" id="5_e6fuh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kf28c"]
+atlas = ExtResource("2_64ppj")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f28la"]
+atlas = ExtResource("2_64ppj")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itmf7"]
+atlas = ExtResource("2_64ppj")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg1ku"]
+atlas = ExtResource("2_64ppj")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcc3b"]
+atlas = ExtResource("2_64ppj")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j11md"]
+atlas = ExtResource("2_64ppj")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk8uq"]
+atlas = ExtResource("2_64ppj")
+region = Rect2(576, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d3g26"]
 atlas = ExtResource("2_jmyar")
@@ -133,6 +162,32 @@ region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_45y82"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kf28c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f28la")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itmf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg1ku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcc3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j11md")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk8uq")
+}],
+"loop": true,
+"name": &"appearing",
+"speed": 20.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d3g26")
@@ -267,7 +322,7 @@ script = ExtResource("1_kuqx4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_45y82")
-animation = &"idle"
+animation = &"appearing"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -278,4 +333,7 @@ shape = SubResource("CapsuleShape2D_02rat")
 one_shot = true
 
 [node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RespawnTimer" type="Timer" parent="."]
 one_shot = true

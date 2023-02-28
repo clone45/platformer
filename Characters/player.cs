@@ -13,11 +13,13 @@ public partial class player : CharacterBody2D
 	public AnimatedSprite2D SpriteAnimation;
 	public Timer jump_button_timer;
 	public Timer death_timer;
-
+	public Timer respawn_timer;
+	
 	enum States : int
 	{
 		gameplay,
-		death
+		death,
+		respawn
 	}
 	
 	States state = States.gameplay;
@@ -31,6 +33,7 @@ public partial class player : CharacterBody2D
 		
 		jump_button_timer = GetNode<Timer>("JumpButtonTimer");
 		death_timer = GetNode<Timer>("DeathTimer");
+		respawn_timer = GetNode<Timer>("RespawnTimer");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -43,6 +46,9 @@ public partial class player : CharacterBody2D
 			case States.death:
 				ProcessDeath(delta);
 				break;
+			case States.respawn:
+				ProcessRespawn(delta);
+				break;				
 		}
 	}
 	
@@ -134,7 +140,18 @@ public partial class player : CharacterBody2D
 		{
 			// this.QueueFree();
 			// SetPosition(Vector2(218.0f, -93.0f));
-			Position = new Vector2(218.0f, -120.0f);
+			Position = new Vector2(218.0f, -140.0f);
+			state = States.respawn;
+			respawn_timer.Start(0.25f);
+		}
+	}
+
+	private void ProcessRespawn(double delta)
+	{
+		SpriteAnimation.Play("appearing");
+		
+		if(respawn_timer.IsStopped())
+		{
 			state = States.gameplay;
 		}
 	}
