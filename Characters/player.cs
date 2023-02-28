@@ -12,53 +12,67 @@ public partial class player : CharacterBody2D
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	public AnimatedSprite2D SpriteAnimation;
 	public Timer jump_button_timer;
+	public Timer death_timer;
+
+	enum States : int
+	{
+		gameplay,
+		death
+	}
+	
+	States state = States.gameplay;
 	
 	public override void _Ready()
 	{
 		base._Ready();
+		
 		SpriteAnimation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		SpriteAnimation.Play("idle");
+		
 		jump_button_timer = GetNode<Timer>("JumpButtonTimer");
+		death_timer = GetNode<Timer>("DeathTimer");
 	}
 
 	public override void _PhysicsProcess(double delta)
+	{
+		switch(state)
+		{
+			case States.gameplay:
+				ProcessGameplay(delta);
+				break;
+			case States.death:
+				ProcessDeath(delta);
+				break;
+		}
+	}
+	
+	private void ProcessGameplay(double delta)
 	{
 		Vector2 new_velocity = Velocity;
 
 		// Add the gravity.
 		if (!IsOnFloor())
 		{
+			// Computer gravity
 			new_velocity.Y += gravity * (float)delta;
 			
-			if(new_velocity.Y <= 0)
-			{
+			if(new_velocity.Y <= 0) {
 				SpriteAnimation.Play("jump");
 			}
-			else
-			{
+			else {
 				SpriteAnimation.Play("fall");
 			}
-			
 		}
 
 		// Handle Jump
 		if (Input.IsActionJustPressed("jump"))
 		{
-			if(IsOnFloor())
-			{
+			if(IsOnFloor()) {
 				new_velocity.Y = JumpVelocity;
 			}
-			else
-			{
+			else {
 				// Set timer
 				jump_button_timer.Start(0.10f);
-				
-				// If close enough to floor, then jump
-				/*
-				var spaceState = GetWorld2D().DirectSpaceState;
-				var query = PhysicsRayQueryParameters2D.Create(globalPosition, enemyPosition, CollisionMask, new Godot.Collections.Array<Rid> { GetRid() });
-				var result = spaceState.IntersectRay(query);
-				*/
 			}		
 		}
 		
@@ -97,6 +111,32 @@ public partial class player : CharacterBody2D
 		Direction = (SpriteAnimation.FlipH) ? -1.0f : 1.0f;
 
 		Velocity = new_velocity;
+		
 		MoveAndSlide();
+		
+		for (int i = 0; i < GetSlideCollisionCount(); i++)
+		{
+			var collision = GetSlideCollision(i);
+
+			if((collision.GetCollider() as Node).IsInGroup("touch_of_death"))
+			{
+				state = States.death;
+				death_timer.Start(0.25f);
+			}
+		}
 	}
+
+	private void ProcessDeath(double delta)
+	{
+		SpriteAnimation.Play("disappearing");
+		
+		if(death_timer.IsStopped())
+		{
+			// this.QueueFree();
+			// SetPosition(Vector2(218.0f, -93.0f));
+			Position = new Vector2(218.0f, -120.0f);
+			state = States.gameplay;
+		}
+	}
+
 }

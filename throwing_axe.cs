@@ -61,6 +61,7 @@ public partial class throwing_axe : CharacterBody2D
 			if (collision != null && axe_fade_out_timer.IsStopped())
 			{
 				GD.Print("I collided with ", ((Node)collision.GetCollider()).Name);
+				GD.Print("I collided with ", ((Node)collision.GetCollider()).IsInGroup("touch_of_death"));
 				
 				// this.QueueFree();
 				this.stuck = true;

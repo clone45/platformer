@@ -1,0 +1,151 @@
+[gd_scene load_steps=21 format=3 uid="uid://cmh13cpooacpm"]
+
+[ext_resource type="Texture2D" uid="uid://r0yhy7j0wxs3" path="res://Enemies/Snail/Idle (38x24).png" id="1_qyppm"]
+[ext_resource type="Script" path="res://Enemies/Snail/snail.cs" id="1_yj3xm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8y4qr"]
+atlas = ExtResource("1_qyppm")
+region = Rect2(0, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euoqm"]
+atlas = ExtResource("1_qyppm")
+region = Rect2(38, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wygqt"]
+atlas = ExtResource("1_qyppm")
+region = Rect2(76, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eghol"]
+atlas = ExtResource("1_qyppm")
+region = Rect2(114, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gtv8"]
+atlas = ExtResource("1_qyppm")
+region = Rect2(152, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw8cx"]
+atlas = ExtResource("1_qyppm")
+region = Rect2(190, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mopq1"]
+atlas = ExtResource("1_qyppm")
+region = Rect2(228, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t38ws"]
+atlas = ExtResource("1_qyppm")
+region = Rect2(266, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owhgs"]
+atlas = ExtResource("1_qyppm")
+region = Rect2(304, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxqn3"]
+atlas = ExtResource("1_qyppm")
+region = Rect2(342, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gedey"]
+atlas = ExtResource("1_qyppm")
+region = Rect2(380, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68lre"]
+atlas = ExtResource("1_qyppm")
+region = Rect2(418, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vma6h"]
+atlas = ExtResource("1_qyppm")
+region = Rect2(456, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_re4ps"]
+atlas = ExtResource("1_qyppm")
+region = Rect2(494, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgnsi"]
+atlas = ExtResource("1_qyppm")
+region = Rect2(532, 0, 38, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_welsr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8y4qr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euoqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wygqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eghol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gtv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw8cx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mopq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t38ws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owhgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxqn3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gedey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68lre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vma6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re4ps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgnsi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="CSharpScript" id="CSharpScript_ay4r0"]
+script/source = "using Godot;
+using System;
+
+public partial class Snail : AnimatedSprite2D
+{
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+}
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_38pn6"]
+height = 32.0
+
+[node name="Snail" type="CharacterBody2D"]
+script = ExtResource("1_yj3xm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_welsr")
+autoplay = "default"
+script = SubResource("CSharpScript_ay4r0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_38pn6")

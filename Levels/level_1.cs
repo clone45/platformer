@@ -42,14 +42,3 @@ public partial class level_1 : Node2D
 		}
 	}
 }
-
-/*
-	public AnimatedSprite2D SpriteAnimation;
-	
-	public override void _Ready()
-	{
-		base._Ready();
-		SpriteAnimation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		SpriteAnimation.Play("idle");
-	}
-*/

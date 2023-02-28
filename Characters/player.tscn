@@ -1,10 +1,39 @@
-[gd_scene load_steps=32 format=3 uid="uid://d1p7omsy7svdo"]
+[gd_scene load_steps=40 format=3 uid="uid://d1p7omsy7svdo"]
 
 [ext_resource type="Script" path="res://Characters/player.cs" id="1_kuqx4"]
+[ext_resource type="Texture2D" uid="uid://dchstqgvvnxp1" path="res://Art/Main Characters/Desappearing (96x96).png" id="2_jmyar"]
 [ext_resource type="Texture2D" uid="uid://babmroe2fmh0f" path="res://Art/Main Characters/Ninja Frog/Fall (32x32).png" id="2_kfyxq"]
 [ext_resource type="Texture2D" uid="uid://c08rmpa5di001" path="res://Art/Main Characters/Ninja Frog/Idle (32x32).png" id="3_n3fa5"]
 [ext_resource type="Texture2D" uid="uid://bf3a0ba5qg14c" path="res://Art/Main Characters/Ninja Frog/Jump (32x32).png" id="4_g3fv6"]
 [ext_resource type="Texture2D" uid="uid://bnhbjtkqcjc26" path="res://Art/Main Characters/Ninja Frog/Run (32x32).png" id="5_e6fuh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3g26"]
+atlas = ExtResource("2_jmyar")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xe6md"]
+atlas = ExtResource("2_jmyar")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj6f2"]
+atlas = ExtResource("2_jmyar")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p45r"]
+atlas = ExtResource("2_jmyar")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mv74y"]
+atlas = ExtResource("2_jmyar")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkbpx"]
+atlas = ExtResource("2_jmyar")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aho10"]
+atlas = ExtResource("2_jmyar")
+region = Rect2(576, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1dye"]
 atlas = ExtResource("2_kfyxq")
@@ -104,6 +133,32 @@ region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_45y82"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3g26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xe6md")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj6f2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7p45r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mv74y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkbpx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aho10")
+}],
+"loop": false,
+"name": &"disappearing",
+"speed": 20.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_i1dye")
@@ -220,4 +275,7 @@ position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_02rat")
 
 [node name="JumpButtonTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DeathTimer" type="Timer" parent="."]
 one_shot = true
