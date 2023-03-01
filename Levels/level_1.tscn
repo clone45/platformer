@@ -600,3 +600,5 @@ rotation = -0.00342464
 
 [node name="Checkpoint" parent="." instance=ExtResource("10_68kw8")]
 position = Vector2(281, -112)
+collision_layer = 33
+collision_mask = 2
