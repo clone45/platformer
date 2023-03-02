@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://cmh13cpooacpm"]
+[gd_scene load_steps=28 format=3 uid="uid://cmh13cpooacpm"]
 
 [ext_resource type="Texture2D" uid="uid://r0yhy7j0wxs3" path="res://Enemies/Snail/Idle (38x24).png" id="1_qyppm"]
 [ext_resource type="Script" path="res://Enemies/Snail/snail.cs" id="1_yj3xm"]
+[ext_resource type="Texture2D" uid="uid://cnexrdg6ead7p" path="res://Enemies/Snail/Shell Idle (38x24).png" id="3_3qcu0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8y4qr"]
 atlas = ExtResource("1_qyppm")
@@ -63,6 +64,30 @@ region = Rect2(494, 0, 38, 24)
 atlas = ExtResource("1_qyppm")
 region = Rect2(532, 0, 38, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6j58k"]
+atlas = ExtResource("3_3qcu0")
+region = Rect2(0, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ln503"]
+atlas = ExtResource("3_3qcu0")
+region = Rect2(38, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3n2sg"]
+atlas = ExtResource("3_3qcu0")
+region = Rect2(76, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktnwk"]
+atlas = ExtResource("3_3qcu0")
+region = Rect2(114, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okb4m"]
+atlas = ExtResource("3_3qcu0")
+region = Rect2(152, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nx1c"]
+atlas = ExtResource("3_3qcu0")
+region = Rect2(190, 0, 38, 24)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_welsr"]
 animations = [{
 "frames": [{
@@ -114,6 +139,29 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6j58k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ln503")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3n2sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktnwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okb4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nx1c")
+}],
+"loop": true,
+"name": &"shell_idle",
+"speed": 20.0
 }]
 
 [sub_resource type="CSharpScript" id="CSharpScript_ay4r0"]
@@ -142,6 +190,7 @@ script = ExtResource("1_yj3xm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_welsr")
+animation = &"shell_idle"
 autoplay = "default"
 script = SubResource("CSharpScript_ay4r0")
 

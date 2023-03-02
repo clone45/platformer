@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bc15tvewhf50i"]
+
+[ext_resource type="Script" path="res://door.cs" id="1_mnblc"]
+[ext_resource type="Texture2D" uid="uid://74ru3xt6gq3l" path="res://Art/Portals/mini-tower.png" id="1_vjxdf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6y7d1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vjxdf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltlhm"]
+size = Vector2(40, 149)
+
+[node name="Door" type="Area2D"]
+script = ExtResource("1_mnblc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(69, -124)
+scale = Vector2(0.629883, 0.629883)
+sprite_frames = SubResource("SpriteFrames_6y7d1")
+autoplay = "default"
+
+[node name="DoorCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -12.5)
+shape = SubResource("RectangleShape2D_ltlhm")
